@@ -35,12 +35,15 @@ def get_sample_path(gp, domain, n_grid=500):
 
     return sample_path
 
-def kern_matern(xmat1, xmat2, ls, alpha, nu=1.):
-    """Matern kernel."""
-    xmat1 = np.array(xmat1)
-    xmat2 = np.array(xmat2)
-    kern = alpha * Matern(length_scale=ls, nu=nu, length_scale_bounds='fixed')
-    return kern(xmat1, xmat2)
+def get_data_from_sample_path(sample_path, gp_noise_var, n_obs=3):
+    """Draw a few observations from sample_path."""
+    obs_idx_list = np.random.choice(range(len(sample_path.x)), n_obs)
+    data = Namespace()
+    data.X = [np.array([sample_path.x[idx]]) +
+              np.random.normal(scale=gp_noise_var)
+              for idx in obs_idx_list]
+    data.y = np.array([sample_path.y[idx] for idx in obs_idx_list])
+    return data
 
 def kern_exp_quad(xmat1, xmat2, ls, alpha):
     """
@@ -72,6 +75,13 @@ def kern_distmat(xmat1, xmat2, ls, alpha, distfn):
     distmat = distfn(xmat1, xmat2)
     sq_norm = -distmat / ls**2
     return alpha**2 * np.exp(sq_norm)
+
+def kern_matern(xmat1, xmat2, ls, alpha, nu=1.):
+    """Matern kernel."""
+    xmat1 = np.array(xmat1)
+    xmat2 = np.array(xmat2)
+    kern = alpha * Matern(length_scale=ls, nu=nu, length_scale_bounds='fixed')
+    return kern(xmat1, xmat2)
 
 def get_cholesky_decomp(k11_nonoise, sigma, psd_str):
     """Return cholesky decomposition."""
@@ -162,8 +172,7 @@ def gp_post(x_train, y_train, x_pred, ls, alpha, sigma, kernel, full_cov=True):
     """Compute parameters of GP posterior."""
     k11_nonoise = kernel(x_train, x_train, ls, alpha)
     lmat = get_cholesky_decomp(k11_nonoise, sigma, 'try_first')
-    smat = solve_upper_triangular(lmat.T, solve_lower_triangular(lmat,
-                                                                 y_train))
+    smat = solve_upper_triangular(lmat.T, solve_lower_triangular(lmat, y_train))
     k21 = kernel(x_pred, x_train, ls, alpha)
     mu2 = k21.dot(smat)
     k22 = kernel(x_pred, x_pred, ls, alpha)

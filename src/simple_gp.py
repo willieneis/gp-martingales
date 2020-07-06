@@ -106,9 +106,10 @@ class SimpleGp:
             (len(x_list) x len(x_list)).
         """
         if len(self.data.X) == 0:
-            return self.get_gp_prior_mu_cov(x_list)
+            return self.get_gp_prior_mu_cov(x_list, full_cov)
 
         # If data is not empty:
+
         mu, cov = gp_post(
             self.data.X,
             self.data.y,
