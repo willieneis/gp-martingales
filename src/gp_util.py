@@ -5,6 +5,10 @@ Utilities for Gaussian processes.
 from argparse import Namespace
 from copy import deepcopy
 import numpy as np
+from scipy.linalg import solve_triangular
+from scipy.spatial.distance import cdist
+from scipy.stats import multivariate_normal as mvnorm
+from sklearn.gaussian_process.kernels import Matern
 
 
 def get_sample_path(gp, domain, n_grid=500):
@@ -19,10 +23,10 @@ def get_sample_path(gp, domain, n_grid=500):
     test_pts_list = [np.array([tp]) for tp in test_pts]
 
     # Compute list of samples from posterior predictive (for each test point)
-    ppred_samp_list = gp.postgen_list(test_pts_list, 1, 1)
+    sample_list = gp.sample_gp_post(test_pts_list, 1)
 
     # Compute y
-    y = np.array([ppred_samp[0] for ppred_samp in ppred_samp_list])
+    y = np.array([sample[0] for sample in sample_list])
 
     # Construct sample_path Namespace
     sample_path = Namespace

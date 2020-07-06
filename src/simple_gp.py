@@ -73,7 +73,7 @@ class SimpleGp:
         """
         # NOTE: currently assumes zero-mean prior.
         # TODO: generalized beyond zero-mean prior.
-        mu = np.zeros(len(x_len))
+        mu = np.zeros(len(x_list))
         cov = self.params.kernel(x_list, x_list, self.params.ls, self.params.alpha)
 
         if full_cov is False:
@@ -105,7 +105,6 @@ class SimpleGp:
             If full_cov is True, return the covariance matrix as a numpy ndarray
             (len(x_list) x len(x_list)).
         """
-
         if len(self.data.X) == 0:
             return self.get_gp_prior_mu_cov(x_list)
 
@@ -127,6 +126,33 @@ class SimpleGp:
         """Get GP posterior for an input x. Return posterior mean and std for x."""
         mu_arr, std_arr = self.get_gp_post_mu_cov([x], full_cov=False)
         return mu_arr[0], std_arr[0]
+
+    def sample_gp_prior(self, x_list, n_samp, full_cov=True):
+        """Get samples from gp prior for each input in x_list."""
+        mu, cov = self.get_gp_prior_mu_cov(x_list, full_cov)
+        return self.get_normal_samples(mu, cov, n_samp, full_cov)
+
+    def sample_gp_post(self, x_list, n_samp, full_cov=True):
+        """Get samples from gp prior for each input in x_list."""
+        if len(self.data.X) == 0:
+            return self.sample_gp_prior(x_list, n_samp, full_cov)
+
+        # If data is not empty:
+        mu, cov = self.get_gp_post_mu_cov(x_list, full_cov)
+        return self.get_normal_samples(mu, cov, n_samp, full_cov)
+
+    def get_normal_samples(self, mu, cov, n_samp, full_cov):
+        """Return normal samples."""
+        if full_cov:
+            sample_list = list(sample_mvn(mu, cov, n_samp))
+        else:
+            sample_list = list(
+                np.random.normal(
+                    mu.reshape(-1,), cov.reshape(-1,), size=(n_samp, len(mu))
+                )
+            )
+        x_list_sample_list = list(np.stack(sample_list).T)
+        return x_list_sample_list
 
     def print_str(self):
         """Print a description string"""
