@@ -1,7 +1,7 @@
 # gp-martingales
 
 [Uncertainty quantification using martingales for misspecified Gaussian
-processes](https://https://arxiv.org/abs/2006.07368)\
+processes](https://arxiv.org/abs/2006.07368)\
 Willie Neiswanger, Aaditya Ramdas\
 _arXiv:2006.07368_
 
@@ -18,8 +18,8 @@ framework as a working model, but do not assume correctness of the prior.  We in
 construct a confidence sequence (CS) for the unknown function using martingale
 techniques. There is a necessary cost to achieving robustness: if the prior was correct,
 posterior GP bands are narrower than our CS. Nevertheless, when the prior is wrong, our
-CS is statistically valid and empirically outperforms standard GP methods, in terms of
-both coverage and utility for BO.
+CS is statistically valid and can empirically outperform standard GPs, in terms of both
+coverage and utility for BO.
 
 <p align="center">
     <img src="docs/gp_prior_1.png" alt="structured" width="40%">
@@ -29,11 +29,10 @@ both coverage and utility for BO.
     <img src="docs/viz_10.png" alt="structured" width="40%">
 </p>
 
-**Top plots**: Two GPs, A (left) and B (right). Assume a function (dark blue line in
-bottom plots) was drawn from GP A.
-**Bottom plots**: Results using (misspecified) GP B as a prior model. The posterior GP
-(grey bands) and our martingale CS (tan bands) are shown, given 5 observations (left) and
-10 observations (right).
+**Top row**: Two GPs, A (left) and B (right).
+**Bottom row**: Assume a function (dark blue line) is drawn from GP A, but we use GP B
+as a prior model.  The posterior GP (grey bands) and our martingale CS (tan bands) are
+shown, given 5 observations (left) and 10 observations (right).
 
 
 ## Installation
@@ -41,4 +40,17 @@ bottom plots) was drawn from GP A.
 This repo requires Python 3.6+. To install Python dependencies, run:
 ```
 $ pip install -r requirements.txt
+```
+
+## Examples
+
+To produce results for a misspecified prior, comparing our CS with a GP posterior, run:
+```
+$ python examples/e_viz.py
+```
+
+To produce results for a correctly specified prior, comparing our CS with a GP
+posterior, run:
+```
+$ python examples/e_viz_correctprior.py
 ```
