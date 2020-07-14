@@ -33,9 +33,9 @@ def make_viz():
 
     # Plot GP priors
     data = Namespace(X=[], y=np.array([]))
-    gpv.visualize_gp(gp1, domain, data, ylim=ylim, save_str='gp_prior_1')
+    gpv.visualize_gp(gp1, domain, data, std_mult=2, ylim=ylim, save_str='gp_prior_1')
     plt.close()
-    gpv.visualize_gp(gp2, domain, data, ylim=ylim, save_str='gp_prior_2')
+    gpv.visualize_gp(gp2, domain, data, std_mult=2, ylim=ylim, save_str='gp_prior_2')
     plt.close()
 
 
