@@ -46,11 +46,23 @@ $ pip install -r requirements.txt
 
 To produce results for a misspecified prior, comparing our CS with a GP posterior, run:
 ```
-$ python examples/e_viz.py
+$ python examples/viz_misspecified_prior.py
 ```
 
 To produce results for a correctly specified prior, comparing our CS with a GP
 posterior, run:
 ```
-$ python examples/e_viz_correctprior.py
+$ python examples/viz_correct_prior.py
+```
+
+
+## Citation
+Please cite [our paper](https://arxiv.org/abs/2006.07368) if you use code from this repo:
+```
+@article{neiswanger2020uncertainty,
+  title={Uncertainty quantification using martingales for misspecified Gaussian processes},
+  author={Neiswanger, Willie and Ramdas, Aaditya},
+  journal={arXiv preprint arXiv:2006.07368},
+  year={2020}
+}
 ```
