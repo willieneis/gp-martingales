@@ -23,7 +23,7 @@ def make_viz():
 
     # Define model params
     gp1_hypers = {'ls': 1., 'alpha': 1.5, 'sigma': 1e-1}
-    gp2_hypers = {'ls': 3., 'alpha': 1., 'sigma': 1e-1}
+    gp2_hypers = {'ls': 1., 'alpha': 1.5, 'sigma': 1e-1}
 
     # Define domain
     x_min = -10.
@@ -50,7 +50,7 @@ def make_viz():
         gp2 = SimpleGp(gp2_hypers)
         gp2.set_data(data)
 
-        # Define gp2 (modified prior)
+        # Define gp3 (modified prior)
         gp3_hypers = copy.deepcopy(gp2_hypers)
         gp3_hypers['alpha'] += 0.01 # TODO: define somewhere else?
         gp3 = SimpleGp(gp3_hypers)
@@ -123,7 +123,7 @@ def get_conf_bounds(gp_num_params, gp_den_params):
 
     # Constrain Mahalanobis distance
     m_dist_min = .01
-    m_dist_max = 10.
+    m_dist_max = 5.
     m_dist = m_dist_min if m_dist < m_dist_min else m_dist
     m_dist = m_dist_max if m_dist > m_dist_max else m_dist
 
