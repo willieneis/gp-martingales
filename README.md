@@ -22,11 +22,11 @@ CS is statistically valid and can empirically outperform standard GPs, in terms 
 coverage and utility for BO.
 
 <p align="center">
-    <img src="docs/gp_prior_1.png" alt="structured" width="40%">
-    <img src="docs/gp_prior_2.png" alt="structured" width="40%">
+    <img src="docs/images/gp_prior_1.png" alt="structured" width="40%">
+    <img src="docs/images/gp_prior_2.png" alt="structured" width="40%">
     <br>
-    <img src="docs/viz_5.png" alt="structured" width="40%">
-    <img src="docs/viz_10.png" alt="structured" width="40%">
+    <img src="docs/images/viz_5.png" alt="structured" width="40%">
+    <img src="docs/images/viz_10.png" alt="structured" width="40%">
 </p>
 
 **Top row**: Two GPs, A (left) and B (right).
