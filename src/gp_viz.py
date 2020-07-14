@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def visualize_gp(gp, domain, data, n_grid=500, n_gen=20000, n_samp_plot=10,
+def visualize_gp(gp, domain, data=None, n_grid=500, n_gen=20000, n_samp_plot=10,
                  std_mult=3, show_sp=True, ylim=[-4, 4], save_str=None,
                  exact_post=True):
     """
@@ -52,12 +52,13 @@ def visualize_gp(gp, domain, data, n_grid=500, n_gen=20000, n_samp_plot=10,
                      color='lightsteelblue', alpha=0.5)
 
     # Plot data
-    data_x_arr = np.array(data.X).flatten()
-    data_y_arr = data.y
-    plt.plot(data_x_arr, data_y_arr, 'o', markeredgecolor='w',
-             markerfacecolor='w', markeredgewidth=2, ms=10)
-    plt.plot(data_x_arr, data_y_arr, 'o', markeredgecolor='deeppink',
-             markerfacecolor='deeppink', markeredgewidth=2, ms=6)
+    if data is not None:
+        data_x_arr = np.array(data.X).flatten()
+        data_y_arr = data.y
+        plt.plot(data_x_arr, data_y_arr, 'o', markeredgecolor='w',
+                 markerfacecolor='w', markeredgewidth=2, ms=10)
+        plt.plot(data_x_arr, data_y_arr, 'o', markeredgecolor='deeppink',
+                 markerfacecolor='deeppink', markeredgewidth=2, ms=6)
 
     # Plot properties
     xlim = [np.min(test_pts), np.max(test_pts)]
