@@ -89,6 +89,8 @@ def visualize_sample_path_and_data(sample_path, data, ylim=[-4, 4],
     numpy arrays) and a data Namespace (assumed to have fields X, a list, and
     y, a 1D numpy array).
     """
+    update_rc_params()
+
     # Plot sample_path
     visualize_sample_path(sample_path, ylim)
 

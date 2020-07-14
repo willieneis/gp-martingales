@@ -55,6 +55,11 @@ posterior, run:
 $ python examples/viz_correct_prior.py
 ```
 
+To to run the CS-LCB algorithm for a misspecified prior, run:
+```
+$ python examples/cslcb_misspecified_prior.py
+```
+
 
 ## Citation
 Please cite [our paper](https://arxiv.org/abs/2006.07368) if you use code from this repo:

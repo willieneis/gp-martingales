@@ -70,9 +70,8 @@ def run_cslcb():
 
         # Plot GP posterior
         save_str = 'viz_' + str(i)
-        gpv.visualize_gp_and_sample_path(gp2, domain, data, sample_path,
-                                         show_sp=False, ylim=ylim,
-                                         save_str=save_str)
+        gpv.visualize_sample_path_and_data(sample_path, data, ylim=ylim,
+                                           save_str=save_str)
         plt.close()
         
         # update data
