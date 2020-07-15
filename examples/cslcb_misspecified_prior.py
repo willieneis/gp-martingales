@@ -11,7 +11,7 @@ from src.quotient import normal_quotient, normal_quotient_log_z
 import src.gp_viz as gpv
 
 
-np.random.seed(11)
+np.random.seed(13)
 
 def run_cslcb():
     """Run LCB algorithm with confidence sequence (CS-LCB)."""

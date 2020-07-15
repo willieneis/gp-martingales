@@ -10,7 +10,7 @@ import src.gp_util as gput
 import src.gp_viz as gpv
 
 
-np.random.seed(11)
+np.random.seed(13)
 
 def run_gplcb():
     """Run LCB algorithm with Gaussian process (GP-LCB)."""
