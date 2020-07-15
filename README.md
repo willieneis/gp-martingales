@@ -65,6 +65,16 @@ To to run the GP-LCB algorithm for a misspecified prior, run:
 $ python examples/gplcb_misspecified_prior.py
 ```
 
+To to run the CS-LCB algorithm for a correctly specified prior, run:
+```
+$ python examples/cslcb_correct_prior.py
+```
+
+To to run the GP-LCB algorithm for a correctly specified prior, run:
+```
+$ python examples/gplcb_correct_prior.py
+```
+
 
 ## Citation
 Please cite [our paper](https://arxiv.org/abs/2006.07368) if you use code from this repo:
