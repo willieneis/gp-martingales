@@ -44,33 +44,33 @@ $ pip install -r requirements.txt
 
 ## Examples
 
-To produce results for a misspecified prior, comparing our CS with a GP posterior, run:
+1. To produce results for a misspecified prior, comparing our CS with a GP posterior, run:
 ```
 $ python examples/viz_misspecified_prior.py
 ```
 
-To produce results for a correctly specified prior, comparing our CS with a GP
+2. To produce results for a correctly specified prior, comparing our CS with a GP
 posterior, run:
 ```
 $ python examples/viz_correct_prior.py
 ```
 
-To to run the CS-LCB algorithm for a misspecified prior, run:
+3. To to run the CS-LCB algorithm for a misspecified prior, run:
 ```
 $ python examples/cslcb_misspecified_prior.py
 ```
 
-To to run the GP-LCB algorithm for a misspecified prior, run:
+4. To to run the GP-LCB algorithm for a misspecified prior, run:
 ```
 $ python examples/gplcb_misspecified_prior.py
 ```
 
-To to run the CS-LCB algorithm for a correctly specified prior, run:
+5. To to run the CS-LCB algorithm for a correctly specified prior, run:
 ```
 $ python examples/cslcb_correct_prior.py
 ```
 
-To to run the GP-LCB algorithm for a correctly specified prior, run:
+6. To to run the GP-LCB algorithm for a correctly specified prior, run:
 ```
 $ python examples/gplcb_correct_prior.py
 ```
