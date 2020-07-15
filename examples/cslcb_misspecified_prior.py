@@ -92,14 +92,6 @@ def query_function_update_data(query_point, data, sample_path):
     return data_new
 
 
-def get_data_subset(data_all, n_sub):
-    """Return data namespace with first n_sub elements of data.X and data.y."""
-    data = copy.deepcopy(data_all)
-    data.X = data.X[:n_sub]
-    data.y = data.y[:n_sub]
-    return data
-
-
 def get_lb_ub_lists(dom_pt_list, gp_num, gp_den, data, print_pt=True):
     """Return lists of lower bounds and upper bounds given list of domain points."""
 
