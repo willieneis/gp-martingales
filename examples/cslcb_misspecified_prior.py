@@ -44,7 +44,7 @@ def run_cslcb():
     # Define set of domain points
     dom_pt_list = list(sample_path.x) # NOTE: confirm if correct
 
-    n_iter = 20
+    n_iter = 30
 
     print('Finished iter: ', end='')
     for i in range(n_iter):

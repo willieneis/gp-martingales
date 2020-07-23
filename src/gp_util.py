@@ -3,7 +3,6 @@ Utilities for Gaussian processes.
 """
 
 from argparse import Namespace
-from copy import deepcopy
 import numpy as np
 from scipy.linalg import solve_triangular
 from scipy.spatial.distance import cdist
@@ -37,7 +36,7 @@ def get_sample_path(gp, domain, n_grid=500):
 
 def get_noisy_sample_path(sample_path_nonoise, gp_noise_var):
     """Return sample_path with noisy observations."""
-    sample_path = deepcopy(sample_path_nonoise)
+    sample_path = Namespace(**vars(sample_path_nonoise))
     sample_path.y = np.array([yi + np.random.normal(scale=gp_noise_var)
                               for yi in sample_path.y])
     return sample_path
