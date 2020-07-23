@@ -35,14 +35,20 @@ def get_sample_path(gp, domain, n_grid=500):
 
     return sample_path
 
+def get_noisy_sample_path(sample_path_nonoise, gp_noise_var):
+    """Return sample_path with noisy observations."""
+    sample_path = deepcopy(sample_path_nonoise)
+    sample_path.y = np.array([yi + np.random.normal(scale=gp_noise_var)
+                              for yi in sample_path.y])
+    return sample_path
+
 def get_data_from_sample_path(sample_path, gp_noise_var, n_obs=3):
     """Draw a few observations from sample_path."""
     obs_idx_list = np.random.choice(range(len(sample_path.x)), n_obs)
     data = Namespace()
-    data.X = [np.array([sample_path.x[idx]]) +
-              np.random.normal(scale=gp_noise_var)
-              for idx in obs_idx_list]
-    data.y = np.array([sample_path.y[idx] for idx in obs_idx_list])
+    data.X = [np.array([sample_path.x[idx]]) for idx in obs_idx_list]
+    data.y = np.array([sample_path.y[idx] + np.random.normal(scale=gp_noise_var)
+                       for idx in obs_idx_list])
     return data
 
 def kern_exp_quad(xmat1, xmat2, ls, alpha):
