@@ -39,7 +39,15 @@ def normal_quotient_log_z(num_mean, num_cov, den_mean, den_cov):
     diff_sign, diff_logdet = np.linalg.slogdet(cov_diff)
     den_sign, den_logdet = np.linalg.slogdet(den_cov)
 
+    # To fix numerical issues
+    diff_logdet = np.nan_to_num(diff_logdet)
+    den_logdet = np.nan_to_num(den_logdet)
+
     log_det_term =  diff_logdet - den_logdet
+
+    # To fix numerical issues
+    if den_logdet < -1e4 or diff_logdet < -1e4:
+        log_det_term = 0
 
     allow_singular = True
     try:
