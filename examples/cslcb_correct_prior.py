@@ -31,7 +31,10 @@ def run_cslcb():
 
     # Drawn one sample path from gp1
     gp1 = SimpleGp(gp1_hypers)
-    sample_path = gput.get_sample_path(gp1, domain)
+    sample_path_nonoise = gput.get_sample_path(gp1, domain)
+
+    # Convert to noisy sample_path observations
+    sample_path = gput.get_noisy_sample_path(sample_path_nonoise, gp1.params.sigma)
 
     # Setup BO: initialize data
     data = Namespace(X=[], y=np.array([]))
@@ -70,7 +73,7 @@ def run_cslcb():
 
         # Plot GP posterior
         save_str = 'viz_' + str(i)
-        gpv.visualize_sample_path_and_data(sample_path, data, ylim=ylim,
+        gpv.visualize_sample_path_and_data(sample_path_nonoise, data, ylim=ylim,
                                            save_str=save_str)
         plt.close()
         

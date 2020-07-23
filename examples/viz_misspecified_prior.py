@@ -55,7 +55,7 @@ def make_viz():
         gp3_hypers['alpha'] += 0.01 # TODO: define somewhere else?
         gp3 = SimpleGp(gp3_hypers)
 
-        lb_list, ub_list = get_lb_ub_lists(dom_pt_list, gp2, gp3, data)
+        lb_list, ub_list = get_lb_ub_lists(dom_pt_list, gp2, gp3, data, False)
 
         # Various plotting
         plt.figure()
@@ -82,13 +82,14 @@ def get_data_subset(data_all, n_sub):
     return data
 
 
-def get_lb_ub_lists(dom_pt_list, gp_num, gp_den, data):
+def get_lb_ub_lists(dom_pt_list, gp_num, gp_den, data, print_pt=True):
     """Return lists of lower bounds and upper bounds given list of domain points."""
 
     lb_list, ub_list = [], []
 
     for x in dom_pt_list:
-        print('domain point x: {}'.format(x))
+        if print_pt:
+            print('domain point x: {}'.format(x))
 
         x_list = data.X + [np.array([x])]
         
