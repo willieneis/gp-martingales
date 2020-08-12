@@ -16,12 +16,12 @@ def normal_quotient(num_mean, num_cov, den_mean, den_cov):
     """
     # Compute quotient cov
     cov_diff = num_cov - den_cov
-    inv_cov_diff_prod = np.linalg.lstsq(cov_diff, num_cov)[0]
+    inv_cov_diff_prod = np.linalg.lstsq(cov_diff, num_cov, rcond=None)[0]
     quot_cov = num_cov - np.matmul(num_cov, inv_cov_diff_prod)
 
     # Compute quotient mean
-    inv_num_cov_mean_prod = np.linalg.lstsq(num_cov, num_mean)[0]
-    inv_den_cov_mean_prod = np.linalg.lstsq(den_cov, den_mean)[0]
+    inv_num_cov_mean_prod = np.linalg.lstsq(num_cov, num_mean, rcond=None)[0]
+    inv_den_cov_mean_prod = np.linalg.lstsq(den_cov, den_mean, rcond=None)[0]
     inv_cov_mean_prod_diff = inv_num_cov_mean_prod - inv_den_cov_mean_prod
     quot_mean = np.matmul(quot_cov, inv_cov_mean_prod_diff)
 
