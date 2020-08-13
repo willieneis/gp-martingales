@@ -1,5 +1,6 @@
 from argparse import Namespace
 import copy
+import pickle
 import numpy as np
 
 from src.simple_gp import SimpleGp
@@ -7,7 +8,8 @@ import src.gp_util as gput
 from src.branin import branin, get_branin_domain
 
 
-np.random.seed(1)
+seed = 1
+np.random.seed(seed)
 
 def run_gplcb():
     """Run LCB algorithm with Gaussian process (GP-LCB)."""
@@ -25,7 +27,7 @@ def run_gplcb():
     init_x = domain.unif_rand_sample()
     data = query_function_update_data(init_x, data, branin)
 
-    n_iter = 70
+    n_iter = 50
     n_test_pts = 100
 
     print('Finished iter: ', end='')
@@ -61,6 +63,8 @@ def run_gplcb():
     print('At iteration {}'.format(opt_idx + 1))
     print('-----')
 
+    return data
+
 
 def query_function_update_data(query_point, data, f):
     """Query f at query_point. Return updated data."""
@@ -72,4 +76,7 @@ def query_function_update_data(query_point, data, f):
 
 
 # Script
-run_gplcb()
+data = run_gplcb()
+filename = 'result_gplcb_seed_' + str(seed) + '.pkl'
+pickle.dump(data, open(filename, 'wb'))
+print('Saved: ' + filename)

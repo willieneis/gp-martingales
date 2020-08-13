@@ -1,5 +1,6 @@
 from argparse import Namespace
 import copy
+import pickle
 import numpy as np
 
 from src.simple_gp import SimpleGp
@@ -8,7 +9,8 @@ from src.quotient import normal_quotient, normal_quotient_log_z
 from src.branin import branin, get_branin_domain
 
 
-np.random.seed(1)
+seed = 1
+np.random.seed(seed)
 
 def run_cslcb():
     """Run LCB algorithm with confidence sequence (CS-LCB)."""
@@ -60,6 +62,8 @@ def run_cslcb():
     print('Minimizer x = {}'.format(data.X[opt_idx]))
     print('At iteration {}'.format(opt_idx + 1))
     print('-----')
+
+    return data
 
 
 def query_function_update_data(query_point, data, f):
@@ -126,4 +130,7 @@ def get_conf_bounds(gp_num_params, gp_den_params):
 
 
 # Script
-run_cslcb()
+data = run_cslcb()
+filename = 'result_cslcb_seed_' + str(seed) + '.pkl'
+pickle.dump(data, open(filename, 'wb'))
+print('Saved: ' + filename)
