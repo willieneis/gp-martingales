@@ -38,7 +38,7 @@ def make_viz():
 
     # Make full data
     data_full = gput.get_data_from_sample_path(
-        sample_path, gp1.params.sigma/4.0, 100
+        sample_path, gp1.params.sigma*4.0, 100
     )
 
     # Define set of domain points
