@@ -13,6 +13,7 @@ def get_trace(yout):
 
 # Script to plot
 plt.rcParams.update({'font.size': 14})
+plt.rcParams.update({'figure.figsize':[10., 6.]})
 plt.figure()
 
 methods = ['gplcb', 'cslcb']
@@ -54,6 +55,6 @@ plt.xlim([0, 50.])
 plt.legend(h_list, ['GP-LCB', 'CS-LCB', 'Optimal $f*(x)$'])
 plt.title('Branin')
 
-filename_img = 'result_plot.png'
+filename_img = 'branin_plot.pdf'
 plt.savefig(filename_img, bbox_inches='tight')
 print('Saved figure: {}'.format(filename_img))
