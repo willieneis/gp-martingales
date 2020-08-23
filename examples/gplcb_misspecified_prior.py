@@ -30,17 +30,20 @@ def run_gplcb():
 
     # Drawn one sample path from gp1
     gp1 = SimpleGp(gp1_hypers)
-    sample_path = gput.get_sample_path(gp1, domain)
+    sample_path_nonoise = gput.get_sample_path(gp1, domain)
+
+    # Convert to noisy sample_path observations
+    sample_path = gput.get_noisy_sample_path(sample_path_nonoise, gp1.params.sigma)
 
     # Setup BO: initialize data
     data = Namespace(X=[], y=np.array([]))
-    init_x = np.random.choice(sample_path.x, 5)[2]
+    init_x = np.random.choice(sample_path.x, 5)[3]
     data = query_function_update_data(init_x, data, sample_path)
 
     # Define set of domain points
     dom_pt_list = list(sample_path.x) # NOTE: confirm if correct
 
-    n_iter = 20
+    n_iter = 30
 
     print('Finished iter: ', end='')
     for i in range(n_iter):
@@ -74,7 +77,7 @@ def run_gplcb():
 
         # Plot GP posterior
         save_str = 'viz_' + str(i)
-        gpv.visualize_sample_path_and_data(sample_path, data, ylim=ylim,
+        gpv.visualize_sample_path_and_data(sample_path_nonoise, data, ylim=ylim,
                                            save_str=save_str)
         plt.close()
         
