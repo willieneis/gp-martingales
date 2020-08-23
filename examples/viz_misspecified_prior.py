@@ -34,7 +34,7 @@ def make_viz():
     gp1 = SimpleGp(gp1_hypers)
     sample_path = gput.get_sample_path(gp1, domain)
 
-    n_obs_list = [3, 5, 10, 15, 17, 20, 25, 30, 40, 60]
+    n_obs_list = [3, 5, 10, 20, 30, 60]
 
     # Make full data
     data_full = gput.get_data_from_sample_path(sample_path, gp1.params.sigma, 100)
