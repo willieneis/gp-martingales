@@ -130,7 +130,7 @@ def update_rc_params():
     plt.rcParams.update({'xtick.labelsize': 14})
     plt.rcParams.update({'ytick.labelsize': 14})
 
-def set_plot_and_show(xlim, ylim, xlabel='x', ylabel='y', plot_width=9,
+def set_plot_and_show(xlim, ylim, xlabel='$x$', ylabel='$y$', plot_width=9,
                       plot_height=5):
     """Set various plot properties and call plt.show()."""
     plt.xlim(xlim)
