@@ -3,6 +3,7 @@
 [Uncertainty quantification using martingales for misspecified Gaussian
 processes](https://arxiv.org/abs/2006.07368)\
 Willie Neiswanger, Aaditya Ramdas\
+Algorithmic Learning Theory (ALT), 2021\
 _arXiv:2006.07368_
 
 We study uncertainty quantification for Gaussian processes (GPs) under misspecified
@@ -22,11 +23,11 @@ CS is statistically valid and can empirically outperform standard GPs, in terms 
 coverage and utility for BO.
 
 <p align="center">
-    <img src="docs/images/gp_prior_1.png" alt="structured" width="40%">
-    <img src="docs/images/gp_prior_2.png" alt="structured" width="40%">
+    <img src="docs/images/viz_prior_true.svg" alt="structured" width="45%">
+    <img src="docs/images/viz_prior.svg" alt="structured" width="45%">
     <br>
-    <img src="docs/images/viz_5.png" alt="structured" width="40%">
-    <img src="docs/images/viz_10.png" alt="structured" width="40%">
+    <img src="docs/images/viz_5.svg" alt="structured" width="45%">
+    <img src="docs/images/viz_10.svg" alt="structured" width="45%">
 </p>
 
 **Top row**: Two GPs, A (left) and B (right).
@@ -79,10 +80,11 @@ $ python examples/gplcb_correct_prior.py
 ## Citation
 Please cite [our paper](https://arxiv.org/abs/2006.07368) if you use code from this repo:
 ```
-@article{neiswanger2020uncertainty,
+@inproceedings{neiswanger2021uncertainty,
   title={Uncertainty quantification using martingales for misspecified Gaussian processes},
   author={Neiswanger, Willie and Ramdas, Aaditya},
-  journal={arXiv preprint arXiv:2006.07368},
-  year={2020}
+  booktitle={Algorithmic Learning Theory},
+  year={2021},
+  organization={PMLR}
 }
 ```
