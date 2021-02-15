@@ -41,7 +41,7 @@ def make_viz():
 
     # Make full data
     data_full = gput.get_data_from_sample_path(
-        sample_path, gp1.params.sigma/4.0, 100
+        sample_path, gp1.params.sigma*4.0, 100
     )
 
     # Define set of domain points
@@ -114,7 +114,8 @@ def get_lb_ub_lists(dom_pt_list, gp_num, gp_den, data, print_pt=True):
 
 def get_conf_bounds(gp_num_params, gp_den_params):
     """Return lower bound and upper bound."""
-    alpha_level = .05
+    alpha_level = 0.05
+    power_val = 0.75
 
     quot_mean, quot_cov = normal_quotient(gp_num_params['mean'], gp_num_params['cov'],
                                           gp_den_params['mean'], gp_den_params['cov'])
@@ -133,7 +134,7 @@ def get_conf_bounds(gp_num_params, gp_den_params):
     m_dist = m_dist_min if m_dist < m_dist_min else m_dist
     m_dist = m_dist_max if m_dist > m_dist_max else m_dist
 
-    max_projection = np.sqrt(quot_cov[-1, -1]) * m_dist
+    max_projection = np.sqrt(quot_cov[-1, -1]) * m_dist / power_val
 
     lb = quot_mean[-1] - max_projection
     ub = quot_mean[-1] + max_projection
