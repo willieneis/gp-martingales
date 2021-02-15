@@ -55,7 +55,7 @@ def make_viz():
 
         # Define gp3 (modified prior)
         gp3_hypers = copy.deepcopy(gp2_hypers)
-        gp3_hypers['alpha'] += 0.01 # TODO: define somewhere else?
+        gp3_hypers['alpha'] += 0.01
         gp3 = SimpleGp(gp3_hypers)
 
         lb_list, ub_list = get_lb_ub_lists(dom_pt_list, gp2, gp3, data, False)

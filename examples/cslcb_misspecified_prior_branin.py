@@ -40,7 +40,7 @@ def run_cslcb():
 
         # Define gp3 (modified prior)
         gp3_hypers = copy.deepcopy(gp2_hypers)
-        gp3_hypers['alpha'] += 0.01 # TODO: define somewhere else?
+        gp3_hypers['alpha'] += 0.01
         gp3 = SimpleGp(gp3_hypers)
 
         # Compute lb_list
