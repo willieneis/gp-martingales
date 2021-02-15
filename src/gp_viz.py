@@ -141,9 +141,9 @@ def set_plot_and_show(xlim, ylim, xlabel='$x$', ylabel='$y$', plot_width=9,
 
     plt.show()
 
-def save_figure(save_str):
+def save_figure(save_str, ext_str='png'):
     if save_str is not None:
-        file_name = save_str + '.png'
+        file_name = save_str + '.' + ext_str
         plt.savefig(file_name, bbox_inches='tight')
 
         # Print save message
