@@ -56,24 +56,29 @@ posterior, run:
 $ python examples/viz_correct_prior.py
 ```
 
-3. To to run the CS-LCB algorithm for a misspecified prior, run:
+3. To run the CS-LCB algorithm for a misspecified prior, run:
 ```
 $ python examples/cslcb_misspecified_prior.py
 ```
 
-4. To to run the GP-LCB algorithm for a misspecified prior, run:
+4. To run the GP-LCB algorithm for a misspecified prior, run:
 ```
 $ python examples/gplcb_misspecified_prior.py
 ```
 
-5. To to run the CS-LCB algorithm for a correctly specified prior, run:
+5. To run the CS-LCB algorithm for a correctly specified prior, run:
 ```
 $ python examples/cslcb_correct_prior.py
 ```
 
-6. To to run the GP-LCB algorithm for a correctly specified prior, run:
+6. To run the GP-LCB algorithm for a correctly specified prior, run:
 ```
 $ python examples/gplcb_correct_prior.py
+```
+
+7. To visualize samples drawn from the two GPs in the figure above (top row), run:
+```
+$ python examples/plot_priors.py
 ```
 
 
