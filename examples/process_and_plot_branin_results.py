@@ -2,6 +2,9 @@ import pickle
 import numpy as np
 import matplotlib.pyplot as plt
 
+import neatplot
+neatplot.set_style('fonts')
+
 
 def get_trace(yout):
     """Return BSF trace."""
@@ -25,7 +28,7 @@ for method in methods:
     traces = []
 
     for seed in seeds:
-        filename = 'result_' + method + '_seed_' + str(seed) + '.pkl'
+        filename = 'paper_figures/results_branin/result_' + method + '_seed_' + str(seed) + '.pkl'
         data = pickle.load(open(filename, 'rb'))
         
         trace = get_trace(data.y)
@@ -52,7 +55,7 @@ plt.xlabel('Iteration')
 plt.ylabel('Minimum queried $f(x)$')
 plt.ylim([0, 2.5])
 plt.xlim([0, 50.])
-plt.legend(h_list, ['GP-LCB', 'CS-LCB', 'Optimal $f*(x)$'])
+plt.legend(h_list, ['GP-LCB', 'CS-LCB', 'Optimal $f^*(x)$'])
 plt.title('Branin')
 
 filename_img = 'branin_plot.pdf'

@@ -7,6 +7,9 @@ from src.simple_gp import SimpleGp
 from src.domains import RealDomain
 import src.gp_viz as gpv
 
+import neatplot
+neatplot.set_style('fonts')
+
 
 np.random.seed(12)
 
@@ -33,9 +36,9 @@ def make_viz():
 
     # Plot GP priors
     data = Namespace(X=[], y=np.array([]))
-    gpv.visualize_gp(gp1, domain, data, std_mult=2, ylim=ylim, save_str='gp_prior_1')
+    gpv.visualize_gp(gp1, domain, data, std_mult=2, ylim=ylim, save_str='viz_prior_true')
     plt.close()
-    gpv.visualize_gp(gp2, domain, data, std_mult=2, ylim=ylim, save_str='gp_prior_2')
+    gpv.visualize_gp(gp2, domain, data, std_mult=2, ylim=ylim, save_str='viz_prior')
     plt.close()
 
 
