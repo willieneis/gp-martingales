@@ -9,6 +9,9 @@ from src.domains import RealDomain
 import src.gp_util as gput
 import src.gp_viz as gpv
 
+import neatplot
+neatplot.set_style('fonts')
+
 
 np.random.seed(13)
 

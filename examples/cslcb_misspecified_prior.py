@@ -10,6 +10,9 @@ import src.gp_util as gput
 from src.quotient import normal_quotient, normal_quotient_log_z
 import src.gp_viz as gpv
 
+import neatplot
+neatplot.set_style('fonts')
+
 
 np.random.seed(13)
 
